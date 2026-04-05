@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
     /* ── Reset ── */
@@ -26,6 +26,7 @@
       --accent-hover:  #4786b8;
       --border:        #dae6f0;
       --radius:        10px;
+      --pixel-font:    'Silkscreen', 'DM Sans', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -58,9 +59,34 @@
     }
     nav.scrolled { border-bottom-color: var(--border); }
 
-    .logo { display: flex; flex-direction: column; line-height: 1.25; }
-    .logo-name    { font-size: 16px; font-weight: 500; letter-spacing: -0.02em; }
-    .logo-tagline { font-size: 11px; color: var(--muted); font-weight: 300; letter-spacing: 0.02em; }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+      padding: 8px 12px 9px;
+      border: 1px solid #c9d9e6;
+      background: rgba(255, 255, 255, 0.72);
+      border-radius: 4px;
+      box-shadow: 2px 2px 0 rgba(27, 42, 56, 0.12);
+    }
+    .logo-name {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-family: var(--pixel-font);
+      text-transform: uppercase;
+      color: #1f3347;
+      text-shadow: 1px 1px 0 rgba(27, 42, 56, 0.2);
+    }
+    .logo-tagline {
+      font-size: 10px;
+      color: #647f97;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      font-family: var(--pixel-font);
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
 
     .nav-right { display: flex; gap: 10px; align-items: center; }
 
@@ -73,16 +99,21 @@
       justify-content: center;
       gap: 7px;
       padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 14px;
+      border-radius: 3px;
+      font-size: 13px;
       font-weight: 400;
-      font-family: inherit;
+      font-family: var(--pixel-font);
       cursor: pointer;
-      transition: all 0.18s ease;
-      border: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+      border: 1px solid transparent;
       text-decoration: none;
       white-space: nowrap;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.03em;
+      box-shadow: 3px 3px 0 rgba(27, 42, 56, 0.14);
+    }
+    .btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(27, 42, 56, 0.18);
     }
     .btn-primary  { background: var(--text); color: #fff; }
     .btn-primary:hover { background: #2b3f55; }
@@ -90,7 +121,7 @@
     .btn-outline:hover { background: var(--accent-light); border-color: var(--accent); }
     .btn-accent   { background: var(--accent); color: #fff; }
     .btn-accent:hover { background: var(--accent-hover); }
-    .btn-lg { padding: 13px 26px; font-size: 15px; border-radius: 9px; }
+    .btn-lg { padding: 12px 22px; font-size: 14px; border-radius: 3px; }
 
     /* ══════════════════════════════
        LAYOUT
@@ -126,9 +157,11 @@
       margin-bottom: 28px;
     }
     .hero h1 em {
-      font-style: italic;
-      font-family: 'DM Serif Display', Georgia, serif;
+      font-style: normal;
+      font-family: var(--pixel-font);
       font-weight: 400;
+      font-size: 0.9em;
+      letter-spacing: 0.02em;
       color: var(--accent);
     }
 
@@ -144,7 +177,7 @@
       position: relative;
     }
     .hero-bullets li::before {
-      content: '—';
+      content: '▸';
       position: absolute;
       left: 0;
       color: var(--faint);
@@ -416,6 +449,12 @@
     }
     @media (max-width: 640px) {
       nav { padding: 16px 24px; }
+      .logo {
+        padding: 7px 9px 8px;
+        box-shadow: 1px 1px 0 rgba(27, 42, 56, 0.12);
+      }
+      .logo-name { font-size: 15px; }
+      .logo-tagline { font-size: 8px; margin-top: 2px; }
       .nav-right .btn-outline { display: none; }
       .hero, .section { padding-left: 24px; padding-right: 24px; }
       .hero { min-height: auto; padding-top: 100px; padding-bottom: 60px; align-items: flex-start; }
@@ -460,101 +499,7 @@
       </div>
 
       <!-- ── Pixel Art Manta Ray ── -->
-      <div class="manta-hero" aria-hidden="true">
-        <svg viewBox="0 0 240 192" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-          <!-- pixel art manta — 20×16 grid, 12px/cell, wide-flat body matching reference -->
-          <!-- M=#5ba3d5 border · L=#cce6f8 pale fill · D=#1a3055 eyes -->
-
-          <!-- row 0: horn tips -->
-          <rect x="84"  y="0"   width="24" height="12" fill="#5ba3d5"/>
-          <rect x="132" y="0"   width="24" height="12" fill="#5ba3d5"/>
-
-          <!-- row 1: horns -->
-          <rect x="72"  y="12"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="84"  y="12"  width="12" height="12" fill="#cce6f8"/>
-          <rect x="96"  y="12"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="132" y="12"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="144" y="12"  width="12" height="12" fill="#cce6f8"/>
-          <rect x="156" y="12"  width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 2: horn base -->
-          <rect x="60"  y="24"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="72"  y="24"  width="24" height="12" fill="#cce6f8"/>
-          <rect x="96"  y="24"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="132" y="24"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="144" y="24"  width="24" height="12" fill="#cce6f8"/>
-          <rect x="168" y="24"  width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 3: shoulders join -->
-          <rect x="48"  y="36"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="60"  y="36"  width="48" height="12" fill="#cce6f8"/>
-          <rect x="108" y="36"  width="24" height="12" fill="#5ba3d5"/>
-          <rect x="132" y="36"  width="48" height="12" fill="#cce6f8"/>
-          <rect x="180" y="36"  width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 4: eyes -->
-          <rect x="36"  y="48"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="48"  y="48"  width="24" height="12" fill="#cce6f8"/>
-          <rect x="72"  y="48"  width="24" height="12" fill="#1a3055"/>
-          <rect x="96"  y="48"  width="48" height="12" fill="#cce6f8"/>
-          <rect x="144" y="48"  width="24" height="12" fill="#1a3055"/>
-          <rect x="168" y="48"  width="24" height="12" fill="#cce6f8"/>
-          <rect x="192" y="48"  width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 5 -->
-          <rect x="24"  y="60"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="36"  y="60"  width="168" height="12" fill="#cce6f8"/>
-          <rect x="204" y="60"  width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 6 -->
-          <rect x="12"  y="72"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="24"  y="72"  width="192" height="12" fill="#cce6f8"/>
-          <rect x="216" y="72"  width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 7: widest -->
-          <rect x="0"   y="84"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="12"  y="84"  width="216" height="12" fill="#cce6f8"/>
-          <rect x="228" y="84"  width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 8: widest (repeat) -->
-          <rect x="0"   y="96"  width="12" height="12" fill="#5ba3d5"/>
-          <rect x="12"  y="96"  width="216" height="12" fill="#cce6f8"/>
-          <rect x="228" y="96"  width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 9: narrowing -->
-          <rect x="12"  y="108" width="12" height="12" fill="#5ba3d5"/>
-          <rect x="24"  y="108" width="180" height="12" fill="#cce6f8"/>
-          <rect x="204" y="108" width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 10 -->
-          <rect x="24"  y="120" width="24" height="12" fill="#5ba3d5"/>
-          <rect x="48"  y="120" width="132" height="12" fill="#cce6f8"/>
-          <rect x="180" y="120" width="12" height="12" fill="#5ba3d5"/>
-
-          <!-- row 11: bottom V -->
-          <rect x="48"  y="132" width="24" height="12" fill="#5ba3d5"/>
-          <rect x="72"  y="132" width="60" height="12" fill="#cce6f8"/>
-          <rect x="132" y="132" width="24" height="12" fill="#5ba3d5"/>
-
-          <!-- row 12: tail base -->
-          <rect x="72"  y="144" width="24" height="12" fill="#5ba3d5"/>
-          <rect x="96"  y="144" width="24" height="12" fill="#cce6f8"/>
-          <rect x="120" y="144" width="24" height="12" fill="#5ba3d5"/>
-
-          <!-- rows 13–15: tail steps diagonally right -->
-          <rect x="84"  y="156" width="12" height="12" fill="#5ba3d5"/>
-          <rect x="96"  y="156" width="24" height="12" fill="#cce6f8"/>
-          <rect x="120" y="156" width="12" height="12" fill="#5ba3d5"/>
-
-          <rect x="96"  y="168" width="12" height="12" fill="#5ba3d5"/>
-          <rect x="108" y="168" width="24" height="12" fill="#cce6f8"/>
-          <rect x="132" y="168" width="12" height="12" fill="#5ba3d5"/>
-
-          <rect x="108" y="180" width="12" height="12" fill="#5ba3d5"/>
-          <rect x="120" y="180" width="12" height="12" fill="#cce6f8"/>
-          <rect x="132" y="180" width="12" height="12" fill="#5ba3d5"/>
-        </svg>
-      </div>
+      <img class="manta-hero" src="./assets/manta-ray.png" alt="" aria-hidden="true" />
     </div>
   </div>
 
